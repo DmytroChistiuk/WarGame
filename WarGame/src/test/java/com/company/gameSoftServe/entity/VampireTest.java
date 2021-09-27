@@ -4,6 +4,7 @@ import com.company.gameSoftServe.actions.BattleImp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
 class VampireTest {
@@ -17,6 +18,15 @@ class VampireTest {
         vampire = new Vampire();
 
         battle = new BattleImp();
+    }
+
+    @Test
+    void constrTest() {
+        assertEquals(vampire.getHealth(), 40);
+        assertEquals(vampire.getVampirism(), 50);
+        assertEquals(vampire.getAttack(), 4);
+        assertTrue(vampire.getIs_alive());
+
     }
 
     @Test
