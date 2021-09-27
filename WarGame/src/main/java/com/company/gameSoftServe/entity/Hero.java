@@ -4,9 +4,10 @@ public abstract class Hero {
     private int health;
     private int attack;
     private int defense;
+    private int vampirism;
     private boolean is_alive;
 
-    public abstract void getDamage(Warrior attacker, Warrior takingDamage);
+    public abstract void attack(Warrior attacker, Warrior takingDamage);
 
     public int getHealth() {
         return health;
@@ -38,5 +39,13 @@ public abstract class Hero {
 
     public void setIs_alive(boolean is_alive) {
         this.is_alive = is_alive;
+    }
+
+    public int getVampirism() {
+        return vampirism;
+    }
+
+    public void setVampirism(int vampirism) {
+        this.vampirism = vampirism;
     }
 }

@@ -9,12 +9,16 @@ public class Defender extends Warrior {
     }
 
     @Override
-    public void getDamage(Warrior attacker, Warrior takingDamage) {
-        if(attacker.getAttack() > takingDamage.getDefense()) {
-            takingDamage.setHealth(takingDamage.getHealth() - attacker.getAttack() + takingDamage.getDefense());
+    void getDamage(Warrior attacker, Warrior defender) {
+        if(attacker.getAttack() > defender.getDefense()) {
+            defender.setHealth(defender.getHealth() - attacker.getAttack() + defender.getDefense());
         }else {
             System.out.println("Didn't strike!");
         }
     }
 
+    @Override
+    public void attack(Warrior defender, Warrior takingDamage) {
+        takingDamage.getDamage(defender,takingDamage);
+    }
 }

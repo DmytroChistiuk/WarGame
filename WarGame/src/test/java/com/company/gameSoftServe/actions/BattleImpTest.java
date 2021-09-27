@@ -1,9 +1,6 @@
 package com.company.gameSoftServe.actions;
 
-import com.company.gameSoftServe.entity.Army;
-import com.company.gameSoftServe.entity.Defender;
-import com.company.gameSoftServe.entity.Knight;
-import com.company.gameSoftServe.entity.Warrior;
+import com.company.gameSoftServe.entity.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +23,9 @@ class BattleImpTest {
     private Warrior unit_1;
     private Warrior unit_2;
     private Warrior unit_3;
+    private Warrior vampire;
+    private Warrior defender;
+
     private Army firstArmy;
     private Army secondArmy;
     private BattleImp battle;
@@ -48,6 +48,8 @@ class BattleImpTest {
         unit_1 = new Warrior();
         unit_2 = new Knight();
         unit_3 = new Warrior();
+        vampire = new Vampire();
+        defender = new Defender();
 
         firstArmy = new Army();
         secondArmy = new Army();
@@ -110,9 +112,26 @@ class BattleImpTest {
     void Fight9() {
         unit_1 = new Defender();
         boolean result = BattleImp.fight(unit_1, unit_3);
+        assertTrue(result);
+    }
+
+    @Test
+    void Fight10() {
+        boolean result = BattleImp.fight(carl, vampire);
+        assertTrue(result);
+    }
+
+    @Test
+    void Fight11() {
+        boolean result = BattleImp.fight(vampire, defender);
         assertFalse(result);
     }
 
+    @Test
+    void Fight12() {
+        boolean result = BattleImp.fight(vampire, jim);
+        assertFalse(result);
+    }
 
     @Test
     void Battle1() throws ReflectiveOperationException {
@@ -161,6 +180,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmy, secondArmy);
         assertTrue(result);
     }
+
     @Test
     void Battle7() throws ReflectiveOperationException {
         firstArmy.addUnits(Warrior.class, 5);
@@ -170,6 +190,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmy, secondArmy);
         assertTrue(result);
     }
+
     @Test
     void Battle8() throws ReflectiveOperationException {
         firstArmy.addUnits(Defender.class, 5);
@@ -179,6 +200,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmy, secondArmy);
         assertTrue(result);
     }
+
     @Test
     void Battle9() throws ReflectiveOperationException {
         firstArmy.addUnits(Warrior.class, 10);
@@ -188,6 +210,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmy, secondArmy);
         assertTrue(result);
     }
+
     @Test
     void Battle10() throws ReflectiveOperationException {
         firstArmy.addUnits(Defender.class, 2);

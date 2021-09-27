@@ -8,8 +8,13 @@ public class Warrior extends Hero {
         setIs_alive(true);
     }
 
-    @Override
-      public void getDamage(Warrior attacker, Warrior takingDamage) {
-        takingDamage.setHealth(takingDamage.getHealth() - attacker.getAttack());
+    void getDamage(Warrior attacker, Warrior warrior) {
+        warrior.setHealth(warrior.getHealth() - attacker.getAttack());
     }
+
+    @Override
+    public void attack(Warrior warrior, Warrior takingDamage) {
+        takingDamage.getDamage(warrior, takingDamage);
+    }
+
 }
