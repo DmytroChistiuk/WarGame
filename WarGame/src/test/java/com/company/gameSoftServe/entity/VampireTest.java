@@ -30,7 +30,7 @@ class VampireTest {
     }
 
     @Test
-    void vampire_shouldnt_restore_health_from_damage_when_healthy() {
+    void vampire_dont_restore_health_from_damage_when_healthy() {
         int vampireHealth = vampire.getHealth();
         vampire.attack(vampire, warrior);
         int vampireHealthAfterAttack = vampire.getHealth();
@@ -38,7 +38,7 @@ class VampireTest {
     }
 
     @Test
-    void vampire_should_restore_health_by_fifty_percent_from_damage_to_warrior() {
+    void vampire_restore_health_by_fifty_percent_from_damage_to_warrior() {
         vampire.setHealth(20);
         int vampireHealth = vampire.getHealth();
         vampire.attack(vampire, warrior);
@@ -46,7 +46,7 @@ class VampireTest {
     }
 
     @Test
-    void vampire_should_restore_health_by_fifty_percent_from_damage_to_defender() {
+    void vampire_restore_health_by_fifty_percent_from_damage_to_defender() {
         warrior = new Defender();
         vampire.setHealth(20);
         int vampireHealth = vampire.getHealth();
