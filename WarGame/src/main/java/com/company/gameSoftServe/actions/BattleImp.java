@@ -20,17 +20,17 @@ public class BattleImp implements Battle {
     }
 
     @Override
-    public boolean fight(Army army1, Army army2) {
-        while ((!army1.isEmpty())&&(!army2.isEmpty())){
-            boolean result = fight(army1.peekFirst(),army2.peekFirst());
+    public boolean fight(ArmyImpl armyImpl1, ArmyImpl armyImpl2) {
+        while ((!armyImpl1.isEmpty())&&(!armyImpl2.isEmpty())){
+            boolean result = fight(armyImpl1.peekFirst(), armyImpl2.peekFirst());
             if (result){
-                army2.pollFirst();
+                armyImpl2.pollFirst();
             }
             if(!result){
-                army1.pollFirst();
+                armyImpl1.pollFirst();
             }
         }
-        if (army1.isEmpty()){
+        if (armyImpl1.isEmpty()){
             return false;
         }
         return true;
