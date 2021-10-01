@@ -3,11 +3,11 @@ package com.company.gameSoftServe.actions;
 import com.company.gameSoftServe.entity.Warrior;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedList;
 
 public class ArmyImpl implements Army {
-    private Deque<Warrior> warriors = new ArrayDeque<>();
+    private Deque<Warrior> warriors = new LinkedList<>();
 
     public void addUnits(Class<? extends Warrior> clazz, int number) throws ReflectiveOperationException {
         Constructor<? extends Warrior> constr = clazz.getConstructor();
@@ -22,14 +22,23 @@ public class ArmyImpl implements Army {
         return warriors.isEmpty();
     }
 
+
     public Warrior peekFirst() {
         return warriors.peekFirst();
     }
-
     public Warrior pollFirst() {
         return warriors.pollFirst();
     }
 
+    public Warrior getByIndex(int index){
+        return ((LinkedList<Warrior>) warriors).get(index);
+    }
+    public int sizeOfArmy() {
+        return warriors.size();
+    }
+    public Warrior remove(int index) {
+        return ((LinkedList<Warrior>) warriors).remove(index);
+    }
 
 
 
