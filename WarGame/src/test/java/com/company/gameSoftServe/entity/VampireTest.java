@@ -1,6 +1,5 @@
 package com.company.gameSoftServe.entity;
 
-import com.company.gameSoftServe.actions.BattleImp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,13 +8,16 @@ import static org.testng.AssertJUnit.assertEquals;
 
 class VampireTest {
     private Warrior warrior;
-    private Warrior vampire;
+    private Vampire vampire;
+    private Defender bob;
     private BattleImp battle;
+
 
     @BeforeEach
     void beforeTestFunction() {
         warrior = new Warrior();
         vampire = new Vampire();
+        bob = new Defender();
 
         battle = new BattleImp();
     }
@@ -47,11 +49,10 @@ class VampireTest {
 
     @Test
     void vampire_restore_health_by_fifty_percent_from_damage_to_defender() {
-        warrior = new Defender();
         vampire.setHealth(20);
         int vampireHealth = vampire.getHealth();
         vampire.attack(vampire, warrior);
-        assertEquals(vampireHealth + (vampire.getAttack() - warrior.getDefense()) / 2, vampire.getHealth());
+        assertEquals(vampireHealth + (vampire.getAttack() - bob.getDefense()) / 2, vampire.getHealth());
     }
 
 }

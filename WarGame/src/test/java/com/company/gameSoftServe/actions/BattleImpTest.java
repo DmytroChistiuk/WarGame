@@ -1,5 +1,6 @@
 package com.company.gameSoftServe.actions;
 
+import com.company.gameSoftServe.entity.BattleImp;
 import com.company.gameSoftServe.entity.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -162,7 +163,7 @@ class BattleImpTest {
         firstArmyImpl.addUnits(Warrior.class, 20);
         secondArmyImpl.addUnits(Warrior.class, 21);
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
-        assertTrue(result);
+        assertFalse(result);
     }
 
     @Test
@@ -170,7 +171,7 @@ class BattleImpTest {
         firstArmyImpl.addUnits(Warrior.class, 10);
         secondArmyImpl.addUnits(Warrior.class, 11);
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
-        assertTrue(result);
+        assertFalse(result);
     }
 
     @Test
@@ -218,6 +219,31 @@ class BattleImpTest {
         firstArmyImpl.addUnits(Defender.class, 1);
         secondArmyImpl.addUnits(Warrior.class, 5);
 
+        boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
+        assertFalse(result);
+    }
+    @Test
+    void Battle11() throws ReflectiveOperationException {
+        firstArmyImpl.addUnits(Warrior.class, 2);
+        secondArmyImpl.addUnits(Lancer.class, 1);
+        secondArmyImpl.addUnits(Warrior.class, 1);
+        boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
+        assertFalse(result);
+    }
+    @Test
+    void Battle12() throws ReflectiveOperationException {
+        firstArmyImpl.addUnits(Warrior.class, 30);
+        secondArmyImpl.addUnits(Lancer.class, 15);
+        secondArmyImpl.addUnits(Warrior.class, 15);
+        boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
+        assertFalse(result);
+    }
+    @Test
+    void Battle13() throws ReflectiveOperationException {
+        firstArmyImpl.addUnits(Warrior.class, 10);
+        firstArmyImpl.addUnits(Warrior.class, 20);
+        secondArmyImpl.addUnits(Lancer.class, 15);
+        secondArmyImpl.addUnits(Warrior.class, 15);
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertFalse(result);
     }

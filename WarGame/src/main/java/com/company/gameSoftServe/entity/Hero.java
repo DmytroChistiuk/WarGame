@@ -3,8 +3,6 @@ package com.company.gameSoftServe.entity;
 public abstract class Hero {
     private int health;
     private int attack;
-    private int defense;
-    private int vampirism;
     private boolean is_alive;
 
     public abstract void attack(Warrior attacker, Warrior takingDamage);
@@ -13,39 +11,24 @@ public abstract class Hero {
         return health;
     }
 
-    public void setHealth(int health) {
+    void setHealth(int health) {
         this.health = health;
     }
 
-    public int getAttack() {
+    int getAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
+    void setAttack(int attack) {
         this.attack = attack;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
     }
 
     public boolean getIs_alive() {
         return is_alive;
     }
 
-    public void setIs_alive(boolean is_alive) {
+    void setIs_alive(boolean is_alive) {
         this.is_alive = is_alive;
     }
 
-    public int getVampirism() {
-        return vampirism;
-    }
-
-    public void setVampirism(int vampirism) {
-        this.vampirism = vampirism;
-    }
 }
