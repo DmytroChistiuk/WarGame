@@ -21,8 +21,8 @@ public class Vampire extends Warrior {
     }
 
     @Override
-    void getDamage(Warrior attacker, Warrior vampire) {
-        vampire.setHealth(vampire.getHealth() - attacker.getAttack());
+    public int getDefaultHealth() {
+        return defaultHealth;
     }
 
     @Override

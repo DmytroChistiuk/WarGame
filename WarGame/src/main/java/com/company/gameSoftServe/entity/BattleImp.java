@@ -24,27 +24,45 @@ public class BattleImp implements Battle {
         while ((!armyImpl1.isEmpty()) && (!armyImpl2.isEmpty())) {
             if (armyImpl1.peekFirst() instanceof DoublePunch) {
                 armyImpl1.peekFirst().attack(armyImpl1.peekFirst(), armyImpl2);
+                healMethod(armyImpl1);
+                if (removeDeadHero(armyImpl2)) break;
             } else {
                 armyImpl1.peekFirst().attack(armyImpl1.peekFirst(), armyImpl2.peekFirst());
-                if (armyImpl2.peekFirst().getHealth() <= 0) {
-                    armyImpl2.pollFirst();
-                    if (armyImpl2.isEmpty()) {
-                        break;
-                    }
-                }
+                healMethod(armyImpl1);
+                if (removeDeadHero(armyImpl2)) break;
             }
             if (armyImpl2.peekFirst() instanceof DoublePunch) {
                 armyImpl2.peekFirst().attack(armyImpl2.peekFirst(), armyImpl1);
+                healMethod(armyImpl2);
+                removeDeadHero(armyImpl1);
             } else {
                 armyImpl2.peekFirst().attack(armyImpl2.peekFirst(), armyImpl1.peekFirst());
-                if (armyImpl1.peekFirst().getHealth() <= 0) {
-                    armyImpl1.pollFirst();
-                }
+                healMethod(armyImpl2);
+                removeDeadHero(armyImpl1);
             }
         }
-            if (armyImpl1.isEmpty()) {
-                return false;
-            }
-            return true;
+        return !armyImpl1.isEmpty();
+    }
+
+    private void healMethod(ArmyImpl armyImpl1) {
+        if (isNextHealer(armyImpl1)) {
+            Healer healer = (Healer) armyImpl1.getByIndex(1);
+            healer.heal(healer, armyImpl1.peekFirst());
         }
     }
+
+    private boolean removeDeadHero(ArmyImpl armyImpl2) {
+        if (armyImpl2.peekFirst().getHealth() <= 0) {
+            armyImpl2.pollFirst();
+            return armyImpl2.isEmpty();
+        }
+        return false;
+    }
+
+    private boolean isNextHealer(ArmyImpl army) {
+        if (army.hasSecondFighter()) {
+            return army.getByIndex(1) instanceof Healer;
+        }
+        return false;
+    }
+}

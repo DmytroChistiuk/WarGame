@@ -3,13 +3,17 @@ package com.company.gameSoftServe.entity;
 import com.company.gameSoftServe.actions.ArmyImpl;
 
 public class Warrior extends Hero {
+    private int defaultHealth = 50;
 
     public Warrior() {
-        int defaultHealth = 50;
         setHealth(defaultHealth);
         int defaultAttack = 5;
         setAttack(defaultAttack);
         setIs_alive(true);
+    }
+
+    public int getDefaultHealth() {
+        return defaultHealth;
     }
 
     void getDamage(Warrior attacker, Warrior warrior) {

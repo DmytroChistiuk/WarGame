@@ -26,20 +26,30 @@ public class ArmyImpl implements Army {
     public Warrior peekFirst() {
         return warriors.peekFirst();
     }
+
     public Warrior pollFirst() {
         return warriors.pollFirst();
     }
 
-    public Warrior getByIndex(int index){
+    public Warrior getByIndex(int index) {
         return ((LinkedList<Warrior>) warriors).get(index);
     }
-    public int sizeOfArmy() {
+
+    private int sizeOfArmy() {
         return warriors.size();
     }
+
     public Warrior remove(int index) {
         return ((LinkedList<Warrior>) warriors).remove(index);
     }
 
-
-
+    public boolean hasSecondFighter() {
+       if(sizeOfArmy()>=2){
+           return true;
+       }
+       return false;
+    }
 }
+
+
+
