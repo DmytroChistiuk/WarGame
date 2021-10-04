@@ -1,6 +1,6 @@
 package com.company.gameSoftServe.entity;
 
-import com.company.gameSoftServe.actions.ArmyImpl;
+import com.company.gameSoftServe.collection.ArmyImpl;
 
 public class Warrior extends Hero {
     private int defaultHealth = 50;

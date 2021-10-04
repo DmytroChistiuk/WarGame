@@ -1,6 +1,6 @@
-package com.company.gameSoftServe.entity;
+package com.company.gameSoftServe;
 
-import com.company.gameSoftServe.actions.ArmyImpl;
+import com.company.gameSoftServe.collection.ArmyImpl;
 import com.company.gameSoftServe.exeption.HealerBattleException;
 
 public interface Battle {

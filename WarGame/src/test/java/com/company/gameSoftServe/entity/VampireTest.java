@@ -1,6 +1,8 @@
 package com.company.gameSoftServe.entity;
 
+import com.company.gameSoftServe.BattleImp;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,7 +34,8 @@ class VampireTest {
     }
 
     @Test
-    void vampire_dont_restore_health_from_damage_when_healthy() {
+    @DisplayName("Vampire don't restore health from damage when healthy")
+    void Test1() {
         int vampireHealth = vampire.getHealth();
         vampire.attack(vampire, warrior);
         int vampireHealthAfterAttack = vampire.getHealth();
@@ -40,7 +43,8 @@ class VampireTest {
     }
 
     @Test
-    void vampire_restore_health_by_fifty_percent_from_damage_to_warrior() {
+    @DisplayName("Vampire restore health by fifty percent from damage to warrior")
+    void Test2() {
         vampire.setHealth(20);
         int vampireHealth = vampire.getHealth();
         vampire.attack(vampire, warrior);
@@ -48,7 +52,8 @@ class VampireTest {
     }
 
     @Test
-    void vampire_restore_health_by_fifty_percent_from_damage_to_defender() {
+    @DisplayName("Vampire restore health by fifty percent from damage to defender")
+    void Test3() {
         vampire.setHealth(20);
         int vampireHealth = vampire.getHealth();
         vampire.attack(vampire, warrior);

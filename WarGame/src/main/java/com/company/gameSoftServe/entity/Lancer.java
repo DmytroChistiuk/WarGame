@@ -1,6 +1,7 @@
 package com.company.gameSoftServe.entity;
 
-import com.company.gameSoftServe.actions.ArmyImpl;
+import com.company.gameSoftServe.collection.ArmyImpl;
+import com.company.gameSoftServe.entity.ability.DoublePunch;
 
 public class Lancer extends Warrior implements DoublePunch {
     private static final int SECOND_DAMAGE_PERCENT = 50;

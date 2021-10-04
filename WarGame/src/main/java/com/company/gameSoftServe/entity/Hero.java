@@ -27,7 +27,7 @@ public abstract class Hero {
         return is_alive;
     }
 
-    void setIs_alive(boolean is_alive) {
+    public void setIs_alive(boolean is_alive) {
         this.is_alive = is_alive;
     }
 

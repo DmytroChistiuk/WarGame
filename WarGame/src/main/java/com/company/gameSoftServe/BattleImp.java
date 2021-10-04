@@ -1,6 +1,9 @@
-package com.company.gameSoftServe.entity;
+package com.company.gameSoftServe;
 
-import com.company.gameSoftServe.actions.ArmyImpl;
+import com.company.gameSoftServe.collection.ArmyImpl;
+import com.company.gameSoftServe.entity.ability.DoublePunch;
+import com.company.gameSoftServe.entity.Healer;
+import com.company.gameSoftServe.entity.Warrior;
 import com.company.gameSoftServe.exeption.HealerBattleException;
 
 import java.util.Iterator;

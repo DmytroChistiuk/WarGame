@@ -3,6 +3,10 @@ package com.company.gameSoftServe.entity;
 public class Healer extends Warrior {
     private int healPower = 2;
 
+    public int getHealPower() {
+        return healPower;
+    }
+
     public Healer() {
         int defaultHealth = 50;
         setHealth(defaultHealth);
