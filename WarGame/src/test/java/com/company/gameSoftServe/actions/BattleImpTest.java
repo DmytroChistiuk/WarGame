@@ -2,6 +2,7 @@ package com.company.gameSoftServe.actions;
 
 import com.company.gameSoftServe.entity.BattleImp;
 import com.company.gameSoftServe.entity.*;
+import com.company.gameSoftServe.exeption.HealerBattleException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -60,76 +61,76 @@ class BattleImpTest {
 
 
     @Test
-    void Fight1() {
+    void Fight1() throws HealerBattleException {
         boolean result = BattleImp.fight(carl, jim);
         assertFalse(result);
     }
 
     @Test
-    void Fight2() {
+    void Fight2() throws HealerBattleException {
         boolean result = BattleImp.fight(ramon, slevin);
         assertTrue(result);
     }
 
     @Test
-    void Fight3() {
+    void Fight3() throws HealerBattleException {
         BattleImp.fight(bob, mars);
         assertTrue(bob.getIs_alive());
     }
 
     @Test
-    void Fight4() {
+    void Fight4() throws HealerBattleException {
         BattleImp.fight(zeus, godkiller);
         assertTrue(zeus.getIs_alive());
     }
 
     @Test
-    void Fight5() {
+    void Fight5() throws HealerBattleException {
         BattleImp.fight(husband, wife);
         assertFalse(wife.getIs_alive());
     }
 
     @Test
-    void Fight6() {
+    void Fight6() throws HealerBattleException {
         BattleImp.fight(dragon, knight);
         assertTrue(knight.getIs_alive());
     }
 
     @Test
-    void Fight7() {
+    void Fight7() throws HealerBattleException {
         BattleImp.fight(unit_1, unit_2);
         boolean result = BattleImp.fight(unit_2, unit_3);
         assertFalse(result);
     }
 
     @Test
-    void Fight8() {
+    void Fight8() throws HealerBattleException {
         unit_1 = new Defender();
         boolean result = BattleImp.fight(unit_1, unit_2);
         assertFalse(result);
     }
 
     @Test
-    void Fight9() {
+    void Fight9() throws HealerBattleException {
         unit_1 = new Defender();
         boolean result = BattleImp.fight(unit_1, unit_3);
         assertTrue(result);
     }
 
     @Test
-    void Fight10() {
+    void Fight10() throws HealerBattleException {
         boolean result = BattleImp.fight(carl, vampire);
         assertTrue(result);
     }
 
     @Test
-    void Fight11() {
+    void Fight11() throws HealerBattleException {
         boolean result = BattleImp.fight(vampire, defender);
         assertFalse(result);
     }
 
     @Test
-    void Fight12() {
+    void Fight12() throws HealerBattleException {
         boolean result = BattleImp.fight(vampire, jim);
         assertFalse(result);
     }
@@ -222,6 +223,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertFalse(result);
     }
+
     @Test
     void Battle11() throws ReflectiveOperationException {
         firstArmyImpl.addUnits(Warrior.class, 2);
@@ -230,6 +232,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertFalse(result);
     }
+
     @Test
     void Battle12() throws ReflectiveOperationException {
         firstArmyImpl.addUnits(Warrior.class, 30);
@@ -238,6 +241,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertFalse(result);
     }
+
     @Test
     void Battle13() throws ReflectiveOperationException {
         firstArmyImpl.addUnits(Warrior.class, 10);
@@ -247,6 +251,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertFalse(result);
     }
+
     @Test
     void Battle14() throws ReflectiveOperationException {
         firstArmyImpl.addUnits(Warrior.class, 10);
@@ -256,6 +261,7 @@ class BattleImpTest {
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertFalse(result);
     }
+
     @Test
     void Battle15() throws ReflectiveOperationException {
         firstArmyImpl.addUnits(Lancer.class, 7);
@@ -270,6 +276,69 @@ class BattleImpTest {
         secondArmyImpl.addUnits(Healer.class, 1);
         secondArmyImpl.addUnits(Vampire.class, 6);
         secondArmyImpl.addUnits(Lancer.class, 4);
+
+        boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
+        assertTrue(result);
+    }
+
+    @Test
+    void Battle16() throws ReflectiveOperationException, HealerBattleException {
+        firstArmyImpl.addUnits(Warrior.class, 5);
+        secondArmyImpl.addUnits(Healer.class, 10);
+
+        boolean result = battle.straightFight(firstArmyImpl, secondArmyImpl);
+        assertTrue(result);
+    }
+
+    @Test
+    void Battle17() throws ReflectiveOperationException, HealerBattleException {
+        firstArmyImpl.addUnits(Healer.class, 1);
+        secondArmyImpl.addUnits(Healer.class, 1);
+
+        boolean result = battle.straightFight(firstArmyImpl, secondArmyImpl);
+        assertTrue(result);
+    }
+
+    @Test
+    void Battle18() throws ReflectiveOperationException, HealerBattleException {
+        firstArmyImpl.addUnits(Healer.class, 2);
+        firstArmyImpl.addUnits(Warrior.class,1);
+        firstArmyImpl.addUnits(Healer.class,1);
+        secondArmyImpl.addUnits(Healer.class, 2);
+        secondArmyImpl.addUnits(Warrior.class,1);
+        secondArmyImpl.addUnits(Healer.class,1);
+
+        boolean result = battle.straightFight(firstArmyImpl, secondArmyImpl);
+        assertTrue(result);
+    }
+
+    @Test
+    void Battle19() throws ReflectiveOperationException, HealerBattleException {
+        firstArmyImpl.addUnits(Healer.class, 14);
+        firstArmyImpl.addUnits(Warrior.class,20);
+        firstArmyImpl.addUnits(Healer.class,13);
+        secondArmyImpl.addUnits(Healer.class, 20);
+        secondArmyImpl.addUnits(Warrior.class,30);
+        secondArmyImpl.addUnits(Healer.class,3);
+
+        boolean result = battle.straightFight(firstArmyImpl, secondArmyImpl);
+        assertFalse(result);
+    }
+
+    @Test
+    void Battle20() throws ReflectiveOperationException {
+        firstArmyImpl.addUnits(Healer.class, 2);
+        secondArmyImpl.addUnits(Healer.class, 2);
+
+        boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
+        assertTrue(result);
+    }
+    @Test
+    void Battle21() throws ReflectiveOperationException {
+        firstArmyImpl.addUnits(Healer.class, 1);
+        firstArmyImpl.addUnits(Warrior.class,2);
+        secondArmyImpl.addUnits(Healer.class, 1);
+        secondArmyImpl.addUnits(Warrior.class,2);
 
         boolean result = battle.fight(firstArmyImpl, secondArmyImpl);
         assertTrue(result);

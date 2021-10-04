@@ -4,6 +4,7 @@ import com.company.gameSoftServe.entity.Warrior;
 
 import java.lang.reflect.Constructor;
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class ArmyImpl implements Army {
@@ -49,6 +50,21 @@ public class ArmyImpl implements Army {
        }
        return false;
     }
+
+    public Iterator<Warrior> iterator(ArmyImpl army){
+        Iterator<Warrior> armyIterator1 = warriors.iterator();
+        return armyIterator1;
+    }
+    public boolean hasNext(Iterator<Warrior> armyIterator1){
+        return armyIterator1.hasNext();
+    }
+    public Warrior next(Iterator<Warrior> armyIterator1){
+        return armyIterator1.next();
+    }
+    public void remove(Iterator<Warrior> armyIterator1){
+        armyIterator1.remove();
+    }
+
 }
 
 
