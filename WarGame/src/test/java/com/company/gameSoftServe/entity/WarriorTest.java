@@ -1,5 +1,6 @@
 package com.company.gameSoftServe.entity;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +17,7 @@ class WarriorTest {
     }
 
     @Test
+    @DisplayName("test getting damage by warrior")
     void getDamage() {
         Warrior warrior1 = new Warrior();
         Warrior warrior2 = new Warrior();
