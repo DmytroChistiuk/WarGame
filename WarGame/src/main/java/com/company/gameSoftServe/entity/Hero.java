@@ -1,11 +1,14 @@
 package com.company.gameSoftServe.entity;
 
+import com.company.gameSoftServe.weapon.Weapon;
+
 public abstract class Hero {
     private int health;
     private int attack;
-    private boolean is_alive;
 
-    public abstract void attack(Warrior attacker, Warrior takingDamage);
+    protected abstract void attack(Warrior attacker, Warrior takingDamage);
+
+    protected abstract Warrior equipWeapon(Weapon weapon);
 
     public int getHealth() {
         return health;
@@ -24,11 +27,11 @@ public abstract class Hero {
     }
 
     public boolean getIs_alive() {
-        return is_alive;
+        if (health > 0)
+            return true;
+        else
+            return false;
     }
 
-    public void setIs_alive(boolean is_alive) {
-        this.is_alive = is_alive;
-    }
 
 }

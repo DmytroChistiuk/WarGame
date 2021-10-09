@@ -2,26 +2,17 @@ package com.company.gameSoftServe.entity;
 
 import com.company.gameSoftServe.weapon.Weapon;
 
-public class Defender extends Warrior {
-    private int defense = 3;
-    private int defaultHealth = 60;
-    private final int priority = 2;
+public class Warlord extends Warrior {
+    private int defaultHealth = 100;
+    private int defense = 2;
+    private final int priority = 1;
 
-    @Override
-    public int getPriority() {
-        return priority;
-    }
 
-    public Defender() {
+    public Warlord() {
         setHealth(defaultHealth);
-        int defaultAttack = 2;
+        int defaultAttack = 4;
         setAttack(defaultAttack);
-        setDefense(defense);
 
-    }
-
-    protected int getDefense() {
-        return defense;
     }
 
     private void setDefense(int defense) {
@@ -34,9 +25,9 @@ public class Defender extends Warrior {
     }
 
     @Override
-    void getDamage(Warrior attacker, Warrior defender) {
+    void getDamage(Warrior attacker, Warrior warlord) {
         if (attacker.getAttack() > defense) {
-            defender.setHealth(defender.getHealth() - attacker.getAttack() + defense);
+            warlord.setHealth(warlord.getHealth() - attacker.getAttack() + defense);
         } else {
             System.out.println("Didn't strike!");
         }
@@ -57,6 +48,10 @@ public class Defender extends Warrior {
         return this;
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
     private void weaponLimit() {
         if (this.defaultHealth < 0) {
             this.defaultHealth = 0;
@@ -69,3 +64,4 @@ public class Defender extends Warrior {
         }
     }
 }
+

@@ -1,8 +1,11 @@
 package com.company.gameSoftServe.collection;
 
+import com.company.gameSoftServe.entity.Hero;
+import com.company.gameSoftServe.entity.Warlord;
 import com.company.gameSoftServe.entity.Warrior;
 
 import java.lang.reflect.Constructor;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,6 +20,9 @@ public class ArmyImpl implements Army {
         for (int i = 0; i < number; i++) {
             Warrior warrior = constr.newInstance();
             warriors.addLast(warrior);
+            if (warrior instanceof Warlord) {
+                break;
+            }
         }
     }
 
@@ -32,6 +38,9 @@ public class ArmyImpl implements Army {
 
     @Override
     public Warrior pollFirst() {
+        if (warriors.peekLast() instanceof Warlord) {
+            moveUnits();
+        }
         return warriors.pollFirst();
     }
 
@@ -40,9 +49,7 @@ public class ArmyImpl implements Army {
         return ((LinkedList<Warrior>) warriors).get(index);
     }
 
-
-
-    private int sizeOfArmy() {
+    public int sizeOfArmy() {
         return warriors.size();
     }
 
@@ -80,7 +87,53 @@ public class ArmyImpl implements Army {
         armyIterator1.remove();
     }
 
+    private void moveUnits() {
+        ((LinkedList<Warrior>) warriors).sort(new WarriorComparator());
+        int swapIndex = getIndexToSwap();
+        swapUnits(swapIndex);
+    }
+
+
+    private int getIndexToSwap() {
+        int index;
+        for (Warrior warrior : warriors) {
+            if (warrior.getPriority() == 3) {
+                index = ((LinkedList<Warrior>) warriors).indexOf(warrior);
+                return index;
+            }
+        }
+        for (Warrior warrior : warriors) {
+            if (warrior.getPriority() == 2) {
+                index = ((LinkedList<Warrior>) warriors).indexOf(warrior);
+                return index;
+            }
+        }
+        return 0;
+    }
+
+    private void swapUnits(int index) {
+        Warrior warriorToSwap;
+        warriorToSwap = ((LinkedList<Warrior>) warriors).get(index);
+        ((LinkedList<Warrior>) warriors).remove(index);
+        warriors.addFirst(warriorToSwap);
+    }
+
+    private class WarriorComparator<W extends Hero> implements Comparator<Warrior> {
+        @Override
+        public int compare(Warrior o1, Warrior o2) {
+            if (o1.getPriority() < o2.getPriority())
+                return 1;
+            if (o1.getPriority() > o2.getPriority())
+                return -1;
+            if (o1.getPriority() == o2.getPriority()) {
+                return 0;
+            }
+            throw new ClassCastException("Failed to compare 2 warrior");
+        }
+    }
+
 }
+
 
 
 

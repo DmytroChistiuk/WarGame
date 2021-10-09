@@ -34,4 +34,6 @@ class HealerTest {
         healer.heal(healer,warrior);
         assertEquals(warrior.getDefaultHealth(),warrior.getHealth());
     }
+
+
 }

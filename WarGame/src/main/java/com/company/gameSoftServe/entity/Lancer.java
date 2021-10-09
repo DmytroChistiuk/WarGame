@@ -2,16 +2,23 @@ package com.company.gameSoftServe.entity;
 
 import com.company.gameSoftServe.collection.ArmyImpl;
 import com.company.gameSoftServe.entity.ability.DoublePunch;
+import com.company.gameSoftServe.weapon.Weapon;
 
 public class Lancer extends Warrior implements DoublePunch {
     private static final int SECOND_DAMAGE_PERCENT = 50;
     private int defaultHealth = 50;
+    private final int priority = 3;
+
+    @Override
+    public int getPriority() {
+        return priority;
+    }
 
     public Lancer() {
         setHealth(defaultHealth);
         int defaultAttack = 6;
         setAttack(defaultAttack);
-        setIs_alive(true);
+
 
     }
     @Override
@@ -41,5 +48,23 @@ public class Lancer extends Warrior implements DoublePunch {
             warrior.attack(warrior,takingDamageArmy.peekFirst());
         }
     }
+
+    @Override
+    public Warrior equipWeapon(Weapon weapon) {
+        this.setHealth(weapon.getHEALTH_EFFECT()+this.getHealth());
+        this.setAttack(weapon.getATTACK_EFFECT()+this.getAttack());
+        this.defaultHealth+=weapon.getHEALTH_EFFECT();
+        weaponLimit();
+        return this;
+    }
+
+    private void weaponLimit() {
+        if (this.defaultHealth<0){
+            this.defaultHealth = 0;
+        }
+        if (this.getAttack()<0){
+            this.setAttack(0);
+        }
+        }
 }
 

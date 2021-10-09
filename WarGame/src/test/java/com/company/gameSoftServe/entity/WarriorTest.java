@@ -2,7 +2,8 @@ package com.company.gameSoftServe.entity;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WarriorTest {
 
@@ -21,4 +22,7 @@ class WarriorTest {
         warrior1.getDamage(warrior2, warrior1);
         assertEquals(warrior1.getHealth(), 45);
     }
+
+
+
 }
